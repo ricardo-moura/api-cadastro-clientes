@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Cliente;
 
 class ClienteController extends Controller
 {
@@ -13,8 +14,7 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        //
-        return 'opa';
+        return Cliente::all();
     }
 
     /**
@@ -25,26 +25,16 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $nome = $request->input('nome');
-        $email = $request->input('email');
-        $telefone = $request->input('telefone');
-        $estado = $request->input('estado');
-        $cidade = $request->input('cidade');
-        $dataNascimento = $request->input('data-nascimento');
+        $cliente = new Cliente;
+        $cliente->nome = $request->input('nome');
+        $cliente->email = $request->input('email');
+        $cliente->telefone = $request->input('telefone');
+        $cliente->estado = $request->input('estado');
+        $cliente->cidade = $request->input('cidade');
+        $cliente->data_nascimento = $request->input('data-nascimento');
+        $cliente->save();
 
-        $resposta = [
-            'nome respondido' => $nome,
-            'email respondido' => $email,
-            'telefone respondido' => $telefone,
-            'estado respondido' => $estado,
-            'cidade respondido' => $cidade,
-            'dataNascimento respondido' => $dataNascimento,
-        ];
-
-        return response()->json($resposta);
-
-        // return 'testando salvar';
+        return response()->json($cliente, 201);
     }
 
     /**
@@ -53,10 +43,9 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Cliente $cliente)
     {
-        //
-        return 'exibindo ' . $id;
+        return $cliente;
     }
 
     /**
@@ -68,8 +57,16 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        return 'atualizar';
+        $cliente = Cliente::find($id);
+        $cliente->nome = $request->input('nome');
+        $cliente->email = $request->input('email');
+        $cliente->telefone = $request->input('telefone');
+        $cliente->estado = $request->input('estado');
+        $cliente->cidade = $request->input('cidade');
+        $cliente->data_nascimento = $request->input('data-nascimento');
+        $cliente->save();
+
+        return response()->json($cliente, 200);
     }
 
     /**
@@ -80,6 +77,10 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cliente = Cliente::find($id);
+
+        $cliente->delete();
+
+        return response()->json(null, 204);
     }
 }
