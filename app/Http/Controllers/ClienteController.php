@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use App\Models\Plano;
 
 class ClienteController extends Controller
 {
@@ -14,7 +15,7 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        return Cliente::all();
+        return response()->json(['message' => null, 'data' => Cliente::all()], 200);
     }
 
     /**
@@ -32,9 +33,18 @@ class ClienteController extends Controller
         $cliente->estado = $request->input('estado');
         $cliente->cidade = $request->input('cidade');
         $cliente->data_nascimento = $request->input('data-nascimento');
+
+        //@TODO - to fix
+        // $plano = new Plano;
+        // // $plano->id = $request->input('plano.id-plano');
+        // $plano->plano =$request->input('plano.nome-plano');
+        // $plano->mensalidade = (float) $request->input('plano.mensalidade');
+
+        // $cliente->planos()->save($plano);
+
         $cliente->save();
 
-        return response()->json($cliente, 201);
+        return response()->json(['message' => 'Cliente cadastrado', 'data' => $cliente], 201);
     }
 
     /**
@@ -45,7 +55,7 @@ class ClienteController extends Controller
      */
     public function show(Cliente $cliente)
     {
-        return $cliente;
+        return response()->json(['message' => null, 'data' => $cliente], 200);
     }
 
     /**
@@ -66,7 +76,7 @@ class ClienteController extends Controller
         $cliente->data_nascimento = $request->input('data-nascimento');
         $cliente->save();
 
-        return response()->json($cliente, 200);
+        return response()->json(['message' => 'Cliente atualizado', 'data' => $cliente], 200);
     }
 
     /**
@@ -83,4 +93,16 @@ class ClienteController extends Controller
 
         return response()->json(null, 204);
     }
+
+    // public function book_event(Request $request, Cliente $user, Event $event)
+    // {
+    //     $note = '';
+    //     if($request->note){
+    //         $note = $request->note;
+    //     }
+    //     if($user->events()->save($event, array('note' => $note))){
+    //         return response()->json(['message'=>'User Event Created','data'=>$event],200);
+    //     }
+    //     return response()->json(['message'=>'Error','data'=>null],400);
+    // }
 }

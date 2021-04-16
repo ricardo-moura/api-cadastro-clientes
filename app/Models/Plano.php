@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Cliente extends Model
+class Plano extends Model
 {
     use HasFactory;
 
-    public function planos()
+    protected $primarykey = 'id_postagem';
+
+    public function clientes()
     {
-        return $this->belongsToMany(Plano::class);
+        return $this->belongsToMany(Cliente::class);
     }
 }
