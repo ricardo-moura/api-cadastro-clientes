@@ -1,6 +1,6 @@
 # API Cadastro Clientes
 ## Introdução:
-API Restful para cadastro de clientes utilizando Laravel 8.
+Uma **API RESTful** desenvolvida com **Laravel 8** para gerenciamento de cadastros de clientes.
 
 ## Requirementos:
 - PHP;
