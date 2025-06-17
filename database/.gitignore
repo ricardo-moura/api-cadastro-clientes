@@ -1,2 +1,6 @@
+<<<<<<< HEAD
 *.sqlite
 *.sqlite-journal
+=======
+*.sqlite*
+>>>>>>> cb58bb5 (chore: initial commit with Laravel 12)

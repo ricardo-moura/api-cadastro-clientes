@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+<<<<<<< HEAD
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+=======
+>>>>>>> cb58bb5 (chore: initial commit with Laravel 12)
 Route::get('/', function () {
     return view('welcome');
 });

@@ -1,3 +1,7 @@
 *
+<<<<<<< HEAD
+=======
+!private/
+>>>>>>> cb58bb5 (chore: initial commit with Laravel 12)
 !public/
 !.gitignore
